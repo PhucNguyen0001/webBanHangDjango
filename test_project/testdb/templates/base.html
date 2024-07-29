@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}" type="text/css">
+</head>
+<body>
+<!--    <img src="{% static 'images/t1.png' %}" class="rounded mx-auto d-block" alt="...">-->
+    <h1>Tìm vòng bi</h1>
+    <h2>Nội dung</h2>
+    {% block content %} {% endblock %}
+    <h2>{% block result %} {% endblock %}</h2>
+</body>
+</html>

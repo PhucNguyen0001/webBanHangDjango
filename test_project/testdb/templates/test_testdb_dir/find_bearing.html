@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+    <form action="search" method="get">
+        <input class="form-control" type="text" placeholder="d" aria-label="default input example" name="d bore">
+        <input class="form-control" type="text" placeholder="D" aria-label="default input example" name="D outside">
+        <input class="form-control" type="text" placeholder="B" aria-label="default input example" name="B">
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    </form>
+{% endblock %}
+
+{% block result %} {% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base2.html" %}
+{% load static %}
+
+{% block title %} Thông tin sản phẩm {% endblock %}
+{% block content %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" id="picture"
+                                           {% if product.hinhanh %}
+                                           src="{{ product.hinhanh }}"
+                                           {% else %}
+                                           src="{% static 'img/default_pic.png' %}"
+                                           {% endif %}
+                                           alt="..."/></div>
+                <div class="col-md-6">
+                    <div class="small mb-1">{{ product.loai.tensanpham }}</div>
+                    <h1 class="display-5 fw-bolder">{{ product.tensp }}</h1>
+                    <div class="fs-5 mb-5">
+                        <span>đ{{ product.giasp }}</span>
+                    </div>
+                    <p class="lead">{{ product.mota }}</p>
+                    <a href="{% url 'suaTTSP' id=product.id %}">
+                        <button class="btn btn-primary">Sửa thông tin sản phẩm</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- /.container-fluid -->
+{% endblock %}

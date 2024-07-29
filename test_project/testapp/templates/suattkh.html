@@ -1,0 +1,52 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %} Sửa thông tin khách hàng {% endblock %}
+
+{% block content %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <form class="was-validated" method="POST" action="{% url 'suaTTKH' id=kh.id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="hidden" name="id" value="{{ kh.id }}">
+            <label for="validationNamearea" class="form-label">Tên</label>
+            <input class="form-control" name="username" placeholder="Required example textarea" required
+                   value="{{ kh.username }}"></input>
+            <div class="invalid-feedback">
+                Vui lòng nhập tên.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="validationEmailarea" class="form-label">Địa chỉ email</label>
+            <input class="form-control" name="email" placeholder="Required example textarea" disabled
+                   value="{{ kh.email }}"></input>
+            <div class="invalid-feedback">
+                Vui lòng nhập địa chỉ email.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="validationPhonearea" class="form-label">SĐT</label>
+            <input class="form-control" name="mobile" placeholder="Required example textarea" required
+                   value="{{ kh.mobile }}"></input>
+            <div class="invalid-feedback">
+                Vui lòng nhập SĐT.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="validationAddressarea" class="form-label">Địa chỉ</label>
+            <input class="form-control" name="diachi" placeholder="Required example textarea" required
+                   value="{{ kh.diachi }}"></input>
+            <div class="invalid-feedback">
+                Vui lòng nhập địa chỉ.
+            </div>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Xác nhận</button>
+        </div>
+    </form>
+
+</div>
+<!-- /.container-fluid -->
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+    <form action="search" method="get">
+        <input class="form-control" type="text" placeholder="d" aria-label="default input example" name="d bore">
+        <input class="form-control" type="text" placeholder="D" aria-label="default input example" name="D outside">
+        <input class="form-control" type="text" placeholder="B" aria-label="default input example" name="B">
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    </form>
+{% endblock %}
+
+{% block result %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">d</th>
+      <th scope="col">D</th>
+      <th scope="col">B</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for record in result %}
+    <tr>
+      <th scope="row"> {{ record.id }}</th>
+      <td>{{ record.name }}</td>
+      <td>{{ record.d_bore }}</td>
+      <td>{{ record.d_outside }}</td>
+      <td>{{ record.b }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

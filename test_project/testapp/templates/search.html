@@ -1,0 +1,77 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %} Tìm {% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <form action="search" method="get">
+            <input class="form-control" type="text" placeholder="d" aria-label="default input example" name="d bore">
+            <input class="form-control" type="text" placeholder="D" aria-label="default input example" name="D outside">
+            <input class="form-control" type="text" placeholder="B" aria-label="default input example" name="B">
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    </form>
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        {% if result %}
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách vòng bi</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>d</th>
+                        <th>D</th>
+                        <th>B</th>
+                        <th>Dynamic</th>
+                        <th>Static</th>
+                        <th>Reference Speed</th>
+                        <th>Limiting Speed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for bearing in result %}
+                    <tr>
+                        <td>{{ bearing.id }}</td>
+                        <td>{{ bearing.name }}</td>
+                        <td>{{ bearing.d_bore }}</td>
+                        <td>{{ bearing.d_outside }}</td>
+                        <td>{{ bearing.b }}</td>
+                        <td>{{ bearing.dynamic }}</td>
+                        <td>{{ bearing.static }}</td>
+                        <td>{{ bearing.ref_speed }}</td>
+                        <td>{{ bearing.lim_speed }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Không tìm thấy vòng bi</h6>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
+{% block reqjs %}
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

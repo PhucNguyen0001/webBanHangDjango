@@ -1,0 +1,98 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block title %} Quản lý sản phẩm {% endblock %}
+
+{% block content %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" id="picture"
+                                           {% if product.hinhanh %}
+                                           src="{{ product.hinhanh }}"
+                                           {% else %}
+                                           src="{% static '/img/default_pic.png' %}"
+                                           {% endif %}
+                                           alt="..." id="picture"/></div>
+            </div>
+            <div class="col-md-6">
+                <form class="was-validated" method="POST" action="{% url 'suaTTSP' id=product.id %}"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" id="id" value="{{ product.id }}">
+                    <div class="mb-3">
+                        <label for="validationTextarea" class="form-label">Tên sản phẩm</label>
+                        <input class="form-control" id="validationTextarea"
+                               placeholder="Required example textarea" required value="{{ product.tensp }}"
+                               name="tensp">
+                        <div class="invalid-feedback">
+                            Vui lòng nhập tên sản phẩm.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="validationTextarea" class="form-label">Giá</label>
+                        <input class="form-control" id="validationTextarea2"
+                               placeholder="Required example textarea" required type="number"
+                               value="{{ product.giasp }}" name="giasp">
+                        <div class="invalid-feedback">
+                            Vui lòng nhập giá.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="validationTextarea" class="form-label">Mô tả</label>
+                        <textarea class="form-control" id="validationTextarea3"
+                                  placeholder="Required example textarea" required name="mota" rows="10" cols="10">{{ product.mota }} </textarea>
+                        <div class="invalid-feedback">
+                            Vui lòng nhập mô tả.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <select class="form-select" name="loai" required aria-label="select example">
+                            <option value="">Loại</option>
+                            {% for loai in list_loai %}
+                            <option value={{ loai.id }} {% if loai.id== product.loai.id %} selected {% endif %}> {{
+                                loai.tensanpham }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">Vui lòng chọn loại</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="validationTextarea" class="form-label">Hình ảnh</label>
+                        <input type="file" class="form-control" aria-label="file example" id="inputPicture"
+                               name="hinhanh">
+                    </div>
+
+                    <div class="mb-3">
+                        <button class="btn btn-primary" type="submit">Submit form</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- /.container-fluid -->
+{% endblock %}
+{% block reqjs %}
+<script>
+    document.getElementById('inputPicture').addEventListener('change', function (e) {
+        var file = e.target.files[0];
+        var imageType = /image.*/;
+
+        if (!file.type.match(imageType)) {
+            alert('File is not an image.');
+            return;
+        }
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var img = document.getElementById('picture');
+            img.src = reader.result;
+        }
+        reader.readAsDataURL(file);
+    })
+</script>
+{% endblock %}
