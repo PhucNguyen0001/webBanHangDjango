@@ -80,17 +80,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'dataonline',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'USER': 'admin',
+        'PASSWORD': 'talavodoi1',
+        'HOST': 'database-1.cto4kac26u7m.ap-southeast-2.rds.amazonaws.com',
         'PORT': '3306',
     },
     'bearings': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bearing_category',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'USER': 'admin',
+        'PASSWORD': 'talavodoi1',
+        'HOST': 'database-1.cto4kac26u7m.ap-southeast-2.rds.amazonaws.com',
         'PORT': '3306',
     }
 
